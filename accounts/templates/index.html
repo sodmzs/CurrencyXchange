@@ -1,0 +1,111 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Currency Xchange</title>
+	<!-- BEGIN META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="your,keywords">
+		<meta name="description" content="Short explanation about this website">
+		<!-- END META -->
+
+		<!-- BEGIN STYLESHEETS -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
+		<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/materialadmin.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}" />
+        <link type="text/css" rel="stylesheet" href="{% static 'css/libs/DataTables/jquery.dataTables.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/libs/DataTables/extensions/dataTables.colVis.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/libs/DataTables/extensions/dataTables.tableTools.css' %}" />
+        <link type="text/css" rel="stylesheet" href="{% static 'css/print.css' %}" />
+</head>
+<body class="menubar-pin menubar-hoverable header-fixed ">
+	<!-- BEGIN HEADER-->
+		<header id="header" >
+			<div class="headerbar">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="headerbar-left">
+					<ul class="header-nav header-nav-options">
+						<li class="header-nav-brand" >
+							<div class="brand-holder">
+								<a href="{% url 'home' %}">
+									<span class="text-lg text-light text-danger">Currency</span><span class="text-lg text-bold text-primary">Xchange</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="headerbar-right">
+					<ul class="header-nav header-nav-profile">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
+								<span class="profile-info">
+									<h4 class="text-lg text-bold text-primary">Hi, {{user.username}}</h4>
+								</span>
+							</a>
+							<ul class="dropdown-menu animation-dock">
+								<li class="dropdown-header">My Wallet</li>
+								<li><A href="">Balance : {{ balance }}</a></li>
+								<li><A href="{% url 'profile' %}">Profile</a></li>
+								<li class="divider"></li>
+								<li><a href="{% url 'logout' %}"><i class="fa fa-fw fa-power-off text-danger"></i> Logout</a></li>
+							</ul><!--end .dropdown-menu -->
+						</li><!--end .dropdown -->
+					</ul><!--end .header-nav-profile -->
+
+				</div><!--end #header-navbar-collapse -->
+			</div>
+		</header>
+		<!-- END HEADER-->
+
+		<!-- BEGIN BASE-->
+			<!-- BEGIN CONTENT-->
+			<div id="content">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div {% if message.tags %} class="alert {{ message.tags }} text-center"{% endif %}>
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+                {% block body %}
+                {% endblock %}
+
+			</div><!--end #content-->
+			<!-- END CONTENT -->
+
+
+		<!-- BEGIN JAVASCRIPT -->
+		<script src="{% static 'js/libs/jquery/jquery-1.11.2.min.js' %}"></script>
+		<script src="{% static 'js/libs/jquery/jquery-migrate-1.2.1.min.js' %}"></script>
+		<script src="{% static 'js/libs/bootstrap/bootstrap.min.js' %}"></script>
+
+		<script src="{% static 'js/libs/nanoscroller/jquery.nanoscroller.min.js' %}"></script>
+
+        <!-- DATATABLE -->
+		<script src="{% static 'js/libs/DataTables/jquery.dataTables.min.js' %}"></script>
+		<script src="{% static 'js/libs/DataTables/extensions/ColVis/js/dataTables.colVis.min.js' %}"></script>
+		<script src="{% static 'js/libs/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js' %}"></script>
+
+		<script src="{% static 'js/core/App.js' %}"></script>
+		<script src="{% static 'js/core/AppNavigation.js' %}"></script>
+		<script src="{% static 'js/core/AppOffcanvas.js' %}"></script>
+		<script src="{% static 'js/core/AppCard.js' %}"></script>
+		<script src="{% static 'js/core/AppForm.js' %}"></script>
+		<script src="{% static 'js/core/AppVendor.js' %}"></script>
+		<script src="{% static 'js/core/Demo.js' %}"></script>
+        <script src="{% static 'js/core/DemoTableDynamic.js' %}"></script>
+		<!-- END JAVASCRIPT -->
+
+	</body>
+	
+</body>
+</html>

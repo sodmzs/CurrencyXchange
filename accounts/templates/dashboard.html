@@ -1,0 +1,121 @@
+{% extends "index.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+
+                <section>
+					<div class="section-body">
+						<div class="row">
+							<!-- BEGIN  - FORM -->
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-head style-primary">
+										<header>Send Money</header>
+										<div class="tools">
+											<a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+											<a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+										</div>
+									</div>
+									<div class="card-body">
+
+										<form class="form" role="form" action="" method="post"> {% csrf_token %}
+
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group floating-label">
+														{{ form1.username | add_class:'form-control' }}
+														<label for="regular2">Select Username</label>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group floating-label">
+														{{ form1.amount | add_class:'form-control' }}
+														<label for="regular2">Enter Amount To Send</label>
+													</div>
+												</div>
+												
+												<div class="col-md-12">
+													<hr>
+													<div class="card-actionbar-row">
+														<input type="submit" class="btn btn-flat btn-primary ink-reaction" name="send" value="SEND">
+													</div>
+												</div>
+											</div>
+										</form>
+									</div><!--end .card-body -->
+								</div><!--end .card -->
+							</div><!--end .col -->
+							<!-- END FORM - TIME ON SITE -->
+
+						</div><!--end .row -->
+					</div><!--end .section-body -->
+				</section>
+				                <section>
+					<div class="section-body">
+						<div class="row">
+
+							<!-- BEGIN  - FORM -->
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-head style-primary">
+										<header>Convert Currency</header>
+										<div class="tools">
+											<a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+											<a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+										</div>
+									</div>
+									<div class="card-body">
+
+										<form class="form" role="form" action="" method="post"> {% csrf_token %}
+											<div class="row">
+												<div class="col-sm-6">
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+													<div class="form-group floating-label">
+														
+														{{ form.amount_curr | add_class:'form-control' }}
+														<label for="regular2">Amount to Convert</label>
+													</div>
+													<div class="form-group floating-label">
+														{{ form.base_curr | add_class:'form-control' }}
+														<label for="regular2">3-letter Base Currency to Convert</label>
+													</div>
+													<div class="form-group floating-label">
+														{{ form.new_curr | add_class:'form-control' }}
+														<label for="regular2">3-letter New Currency to Convert</label>
+													</div>
+
+													<h3 class="text-lg text-bold text-primary">Converted Amount : {{result}}</h3>
+											</div>	
+												
+
+												<div class="col-md-12">
+													<hr>
+													<div class="card-actionbar-row">
+														<input type="submit" class="btn btn-flat btn-primary ink-reaction" name = "check" value="CHECK">
+													</div>
+												</div>
+											</div>
+										</form>
+									</div><!--end .card-body -->
+								</div><!--end .card -->
+							</div><!--end .col -->
+							<!-- END FORM - TIME ON SITE -->
+
+						</div><!--end .row -->
+					</div><!--end .section-body -->
+				</section>
+
+{% endblock %}

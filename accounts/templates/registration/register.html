@@ -1,0 +1,63 @@
+{% extends '../layout.html' %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+{% block content %}
+
+
+		<!-- BEGIN LOGIN SECTION -->
+		<section class="section-account">
+			<!--<div class="spacer"></div>-->
+			<div class="card contain-sm style-transparent" style="max-width:450px">
+				<div class="card-body">
+                    
+					<div class="card">
+						<div class="card-body">
+							<span class="text-lg text-bold text-primary">Currency Xchange</span>
+							<br/><br/>
+							<form class="form floating-label" action="{% url 'register' %}" accept-charset="utf-8" method="POST" enctype="multipart/form-data">
+
+		                        {% csrf_token %}
+
+		                        {% if form.errors %}
+
+		                            <div class="alert alert-danger">
+		                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		                                <strong>Error!</strong> Your username and password didn't match. Please try again.
+		                            </div>
+
+		                        {% endif %}
+
+								<div class="form-group">
+									{{ form1.username |add_class:"form-control" }}
+									<label for="username">Username</label>
+								</div>
+								<div class="form-group">
+									{{ form1.password1 |add_class:"form-control"  }}
+									<label for="password">Password</label>
+								</div>
+								<div class="form-group">
+									{{ form1.password2 |add_class:"form-control"  }}
+									<label for="password">Confirm Password</label>
+								</div>
+								<br/>
+								<div class="row">
+									<div class="col-xs-6 text-left">
+										<button class="btn btn-primary btn-raised" type="submit">Register</button>
+									</div><!--end .col -->
+								</div><!--end .row -->
+							</form>
+						</div>
+					</div>
+				</div><!--end .card -->
+			</div>
+		</section>
+		<!-- END LOGIN SECTION -->
+
+		<!-- BEGIN JAVASCRIPT -->
+		<script src="{% static 'js/libs/jquery/jquery-1.11.2.min.js' %}"></script>
+		<script src="{% static 'js/libs/bootstrap/bootstrap.min.js' %}"></script>
+
+		<script src="{% static 'js/core/AppForm.js' %}"></script>
+		<!-- END JAVASCRIPT -->
+
+{% endblock %}
