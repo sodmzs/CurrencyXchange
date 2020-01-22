@@ -21,4 +21,7 @@ API used for currency conversion from:
 https://openexchangerates.org
 
 
+Check out the live demo :
+
+http://sodmzsnew.pythonanywhere.com/accounts/
 
