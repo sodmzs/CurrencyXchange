@@ -92,7 +92,7 @@ def dashboardView(request):
 				print(receiverUser)
 				sender = balance.objects.get(user = senderUser)
 				if (sender.balance <= 10):
-					return redirect('/accounts/dashboard', messages.success(request, 'Insufficient Amount', 'alert-danger'))
+					return redirect('/accounts', messages.success(request, 'Insufficient Amount', 'alert-danger'))
 				else:
 					print(sender)
 					receiver = balance.objects.get(user = receiverUser)
@@ -101,10 +101,10 @@ def dashboardView(request):
 					receiver.balance = receiver.balance + int(amount)
 					sender.save()
 					receiver.save()
-					return redirect('/accounts/dashboard', messages.success(request, 'Transaction Success', 'alert-success'))
+					return redirect('/accounts', messages.success(request, 'Transaction Success', 'alert-success'))
 			except Exception as e:
 				print(e)
-				return redirect('/accounts/dashboard', messages.success(request, 'Transaction Failure, Please check and try again', 'alert-danger'))
+				return redirect('/accounts', messages.success(request, 'Transaction Failure, Please check and try again', 'alert-danger'))
 	else:
 		form1 = WalletForm()
 
@@ -126,7 +126,7 @@ def dashboardView(request):
 				print(result)
 				return render(request,'dashboard.html', {'balance': user.balance, 'form':form, 'form1':form1, 'result':result})
 			except KeyError as e:
-				return redirect('/accounts/dashboard', messages.error(request, 'Invalid Currency', 'alert-danger'))
+				return redirect('/accounts', messages.error(request, 'Invalid Currency', 'alert-danger'))
 	else:
 		form = CurrencyForm()
 	return render(request, 'dashboard.html', {'form':form, 'form1':form1, 'balance': user.balance})
