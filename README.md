@@ -20,6 +20,9 @@ djangorestframework==3.4.6
 API used for currency conversion from:
 https://openexchangerates.org
 
+default URL :
+http://127.0.0.1:8000/accounts/
+
 
 Check out the live demo :
 
